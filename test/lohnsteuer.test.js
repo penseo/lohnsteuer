@@ -38,7 +38,7 @@ describe('lohnsteuer', function () {
             BKS: 0,
             BKV: 0,
             LSTLZZ: 277400,
-            SOLZLZZ: 15260,
+            SOLZLZZ: 15257,
             SOLZS: 0,
             SOLZV: 0,
             STS: 0,
@@ -58,7 +58,7 @@ describe('lohnsteuer', function () {
             BKS: 0,
             BKV: 0,
             LSTLZZ: 252500,
-            SOLZLZZ: 13890,
+            SOLZLZZ: 13887,
             SOLZS: 0,
             SOLZV: 0,
             STS: 0,
@@ -85,7 +85,7 @@ describe('lohnsteuer', function () {
             BKS: 0,
             BKV: 0,
             LSTLZZ: 277400,
-            SOLZLZZ: 15260,
+            SOLZLZZ: 15257,
             SOLZS: 0,
             SOLZV: 0,
             STS: 0,
@@ -105,7 +105,7 @@ describe('lohnsteuer', function () {
             BKS: 0,
             BKV: 0,
             LSTLZZ: 252500,
-            SOLZLZZ: 13890,
+            SOLZLZZ: 13887,
             SOLZS: 0,
             SOLZV: 0,
             STS: 0,
@@ -157,7 +157,7 @@ describe('lohnsteuer', function () {
             BKS: 0,
             BKV: 0,
             LSTLZZ: 233900,
-            SOLZLZZ: 12860,
+            SOLZLZZ: 12864,
             SOLZS: 0,
             SOLZV: 0,
             STS: 0,
@@ -246,6 +246,32 @@ describe('lohnsteuer', function () {
             VFRBS1: 0,
             VFRBS2: 0,
             WVFRB: 839900,
+            WVFRBO: 0,
+            WVFRBM: 0
+        });
+    });
+
+    it('should return the algorithm based on the date for 2024', function () {
+        expect(lohnsteuer.algorithmForDate(new Date(2024, 2, 1), {asNumbers: true})({
+            STKL: 1,
+            LZZ: 1,
+            RE4: 2500000
+        })).to.eql({
+            BK: 0,
+            BKS: 0,
+            BKV: 0,
+            LSTLZZ: 156800,
+            SOLZLZZ: 0,
+            SOLZS: 0,
+            SOLZV: 0,
+            STS: 0,
+            STV: 0,
+            VKVLZZ: 0,
+            VKVSONST: 0,
+            VFRB: 123000,
+            VFRBS1: 0,
+            VFRBS2: 0,
+            WVFRB: 763000,
             WVFRBO: 0,
             WVFRBM: 0
         });
