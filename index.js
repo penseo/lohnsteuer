@@ -45,7 +45,8 @@ var algorithms = {
     "2021": {from: new Date(2021, 0, 1), exclusiveTo: new Date(2022, 0, 1)},
     "2022": {from: new Date(2022, 0, 1), exclusiveTo: new Date(2023, 0, 1)},
     "2023": {from: new Date(2023, 0, 1), exclusiveTo: new Date(2024, 0, 1)},
-    "2024": {from: new Date(2024, 0, 1), exclusiveTo: new Date(2025, 0, 1)}
+    "2024": {from: new Date(2024, 0, 1), exclusiveTo: new Date(2025, 0, 1)},
+    "2025": {from: new Date(2025, 0, 1), exclusiveTo: new Date(2026, 0, 1)}
 };
 
 function algorithmByName(name, options) {
