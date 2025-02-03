@@ -309,7 +309,7 @@ var ZAHL1000 = new BigDecimal("1000");
 // const BigDecimal
 var ZAHL10000 = new BigDecimal("10000");
 module.exports = function Lohnsteuer2025(args) {
-    //  Stand: 2024-11-18 14:40
+    //  Stand: 2025-01-07 10:15
     //  ITZBund Berlin
     //   EINGABEPARAMETER
     //  1, wenn die Anwendung des Faktorverfahrens gewählt wurden (nur in Steuerklasse IV)
@@ -891,13 +891,15 @@ module.exports = function Lohnsteuer2025(args) {
         } else {
             PVSATZAN = PVSATZAN.subtract(PVA.multiply(new BigDecimal("0.0025")));
         }
-        W1STKL5 = new BigDecimal("13432");
+        W1STKL5 = new BigDecimal("13785");
         //  geändert für 2025
-        W2STKL5 = new BigDecimal("33380");
+        W2STKL5 = new BigDecimal("34240");
         //  geändert für 2025
         W3STKL5 = new BigDecimal("222260");
-        GFB = new BigDecimal("11784");
-        SOLZFREI = new BigDecimal("18130");
+        GFB = new BigDecimal("12096");
+        //  geändert für 2025
+        SOLZFREI = new BigDecimal("19950");
+        //  geändert für 2025
     }
 
     //  Ermittlung des Jahresarbeitslohns nach § 39 b Abs. 2 Satz 2 EStG, PAP Seite 15
@@ -1082,24 +1084,24 @@ module.exports = function Lohnsteuer2025(args) {
         KZTAB = 1;
         if (STKL === 1) {
             SAP = new BigDecimal("36");
-            KFB = (ZKF.multiply(new BigDecimal("9540"))).round(0, BigDecimal.RoundingModes.DOWN);
+            KFB = (ZKF.multiply(new BigDecimal("9600"))).round(0, BigDecimal.RoundingModes.DOWN);
             //  geändert für 2025
         } else {
             if (STKL === 2) {
                 EFA = new BigDecimal("4260");
                 SAP = new BigDecimal("36");
-                KFB = (ZKF.multiply(new BigDecimal("9540"))).round(0, BigDecimal.RoundingModes.DOWN);
+                KFB = (ZKF.multiply(new BigDecimal("9600"))).round(0, BigDecimal.RoundingModes.DOWN);
                 //  geändert für 2025
             } else {
                 if (STKL === 3) {
                     KZTAB = 2;
                     SAP = new BigDecimal("36");
-                    KFB = (ZKF.multiply(new BigDecimal("9540"))).round(0, BigDecimal.RoundingModes.DOWN);
+                    KFB = (ZKF.multiply(new BigDecimal("9600"))).round(0, BigDecimal.RoundingModes.DOWN);
                     //  geändert für 2025
                 } else {
                     if (STKL === 4) {
                         SAP = new BigDecimal("36");
-                        KFB = (ZKF.multiply(new BigDecimal("4770"))).round(0, BigDecimal.RoundingModes.DOWN);
+                        KFB = (ZKF.multiply(new BigDecimal("4800"))).round(0, BigDecimal.RoundingModes.DOWN);
                         //  geändert für 2025
                     } else {
                         if (STKL === 5) {
@@ -1160,7 +1162,8 @@ module.exports = function Lohnsteuer2025(args) {
             X = (ZVE.divide(new BigDecimal(String(KZTAB)))).round(0, BigDecimal.RoundingModes.DOWN);
         }
         if (STKL < 5) {
-            UPTAB24();
+            UPTAB25();
+            //  geändert für 2025
         } else {
             MST5_6();
         }
@@ -1244,10 +1247,12 @@ module.exports = function Lohnsteuer2025(args) {
     //  Unterprogramm zur Lohnsteuer fuer die Steuerklassen V und VI (§ 39b Abs. 2 Satz 7 EStG), PAP Seite 30
     function UP5_6() {
         X = (ZX.multiply(new BigDecimal("1.25"))).round(2, BigDecimal.RoundingModes.DOWN);
-        UPTAB24();
+        UPTAB25();
+        //  geändert für 2025
         ST1 = ST;
         X = (ZX.multiply(new BigDecimal("0.75"))).round(2, BigDecimal.RoundingModes.DOWN);
-        UPTAB24();
+        UPTAB25();
+        //  geändert für 2025
         ST2 = ST;
         DIFF = (ST1.subtract(ST2)).multiply(ZAHL2);
         MIST = (ZX.multiply(new BigDecimal("0.14"))).round(0, BigDecimal.RoundingModes.DOWN);
@@ -1389,7 +1394,8 @@ module.exports = function Lohnsteuer2025(args) {
         }
         if (STKL < 5)         //  STKL < 5
 {
-            UPTAB24();
+            UPTAB25();
+            //  geändert für 2025
         } else {
             MST5_6();
         }
@@ -1434,27 +1440,36 @@ module.exports = function Lohnsteuer2025(args) {
     }
 
     //  Tarifliche Einkommensteuer §32a EStG, PAP Seite 38
-    function UPTAB24() {
+    function UPTAB25() {
+        //  geändert für 2025
         if (X.compareTo(GFB.add(ZAHL1)) === -1) {
             ST = new BigDecimal("0");
         } else {
-            if (X.compareTo(new BigDecimal("17006")) === -1) {
+            if (X.compareTo(new BigDecimal("17444")) === -1)             //  geändert für 2025
+{
                 Y = (X.subtract(GFB)).divide(ZAHL10000).round(6, BigDecimal.RoundingModes.DOWN);
-                RW = Y.multiply(new BigDecimal("954.8"));
+                RW = Y.multiply(new BigDecimal("932.30"));
+                //  geändert für 2025
                 RW = RW.add(new BigDecimal("1400"));
                 ST = (RW.multiply(Y)).round(0, BigDecimal.RoundingModes.DOWN);
             } else {
-                if (X.compareTo(new BigDecimal("66761")) === -1) {
-                    Y = (X.subtract(new BigDecimal("17005"))).divide(ZAHL10000).round(6, BigDecimal.RoundingModes.DOWN);
-                    RW = Y.multiply(new BigDecimal("181.19"));
+                if (X.compareTo(new BigDecimal("68481")) === -1)                 //  geändert für 2025
+{
+                    Y = (X.subtract(new BigDecimal("17443"))).divide(ZAHL10000).round(6, BigDecimal.RoundingModes.DOWN);
+                    //  geändert für 2025
+                    RW = Y.multiply(new BigDecimal("176.64"));
+                    //  geändert für 2025
                     RW = RW.add(new BigDecimal("2397"));
                     RW = RW.multiply(Y);
-                    ST = (RW.add(new BigDecimal("991.21"))).round(0, BigDecimal.RoundingModes.DOWN);
+                    ST = (RW.add(new BigDecimal("1015.13"))).round(0, BigDecimal.RoundingModes.DOWN);
+                    //  geändert für 2025
                 } else {
                     if (X.compareTo(new BigDecimal("277826")) === -1) {
-                        ST = ((X.multiply(new BigDecimal("0.42"))).subtract(new BigDecimal("10636.31"))).round(0, BigDecimal.RoundingModes.DOWN);
+                        ST = ((X.multiply(new BigDecimal("0.42"))).subtract(new BigDecimal("10911.92"))).round(0, BigDecimal.RoundingModes.DOWN);
+                        //  geändert für 2025
                     } else {
-                        ST = ((X.multiply(new BigDecimal("0.45"))).subtract(new BigDecimal("18971.06"))).round(0, BigDecimal.RoundingModes.DOWN);
+                        ST = ((X.multiply(new BigDecimal("0.45"))).subtract(new BigDecimal("19246.67"))).round(0, BigDecimal.RoundingModes.DOWN);
+                        //  geändert für 2025
                     }
                 }
             }
