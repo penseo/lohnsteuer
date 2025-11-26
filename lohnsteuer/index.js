@@ -22,3 +22,4 @@ exports.lohnsteuer2022 = require('./lohnsteuer2022');
 exports.lohnsteuer2023 = require('./lohnsteuer2023');
 exports.lohnsteuer2024 = require('./lohnsteuer2024');
 exports.lohnsteuer2025 = require('./lohnsteuer2025');
+exports.lohnsteuer2026 = require('./lohnsteuer2026');
